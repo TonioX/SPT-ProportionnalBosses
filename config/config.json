@@ -1,0 +1,136 @@
+{
+	"enabled":true,
+	"levelThreshold":60, 
+	"progressionParameters":{
+		"p1":0,
+		"p2":0,
+		"p3":1,
+		"p4":1
+	},
+	"locations":{
+		"bigmap":{
+			"bosses":[
+				{
+					"name": "bossBully",
+					"maxChance":100
+				},
+				{
+					"name": "gifter",
+					"maxChance":100
+				},
+				{
+					"name": "bossKnight",
+					"maxChance":25
+				}
+			]
+		},
+		"factory4_day":{
+			"bosses":[
+				{
+					"name": "bossTagilla",
+					"maxChance":100
+				},
+				{
+					"name": "gifter",
+					"maxChance":100
+				}
+			]
+		},
+		"factory4_night":{
+			"bosses":[
+				{
+					"name": "bossTagilla",
+					"maxChance":100
+				},
+				{
+					"name": "gifter",
+					"maxChance":100
+				},
+				{
+					"name": "sectantPriest",
+					"maxChance":2
+				}
+			]
+		},
+		"interchange":{
+			"bosses":[
+				{
+					"name": "bossKilla",
+					"maxChance":100
+				},
+				{
+					"name": "gifter",
+					"maxChance":100
+				}
+			]
+		},
+		"lighthouse":{
+			"bosses":[
+			]
+		},
+		"rezervbase":{
+			"bosses":[
+				{
+					"name": "bossGluhar",
+					"maxChance":100
+				},
+				{
+					"name": "gifter",
+					"maxChance":100
+				}
+			]
+
+		},
+		"shoreline":{
+			"bosses":[
+				{
+					"name": "bossSanitar",
+					"maxChance":100
+				},
+				{
+					"name": "gifter",
+					"maxChance":100
+				},
+				{
+					"name":"bossKnight",
+					"maxChance":25
+				}
+			]
+
+		},
+		"tarkovstreets":{
+			"bosses":[
+				{
+					"name": "bossKilla",
+					"maxChance":5
+				},
+				{
+					"name": "gifter",
+					"maxChance":100
+				},
+				{
+					"name": "bossGluhar",
+					"maxChance":5
+				}
+			]
+
+		},
+		"woods":{
+			"bosses":[
+				{
+					"name": "bossKojaniy",
+					"maxChance":100
+				},
+				{
+					"name": "gifter",
+					"maxChance":100
+				},
+				{
+					"name": "bossKnight",
+					"maxChance":25
+				}
+			]
+
+		}
+	}
+	}
