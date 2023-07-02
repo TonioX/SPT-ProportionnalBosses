@@ -1,6 +1,6 @@
 {
-    "name": "TonioX-ProportionnalBosses",
-    "version": "1.0.0",
+    "name": "ProportionnalBosses",
+    "version": "1.0.1",
     "main": "src/mod.js",
     "license": "MIT",
     "author": "TonioX",
