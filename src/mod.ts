@@ -7,9 +7,10 @@ import { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
 import { ILogger } from "@spt-aki/models/spt/utils/ILogger";
 import { IDatabaseTables } from "@spt-aki/models/spt/server/IDatabaseTables";
 import { ILocations } from "@spt-aki/models/spt/server/ILocations";
-import { SaveServer } from "@spt-aki/servers/SaveServer";
+import { ProfileHelper } from "@spt-aki/helpers/ProfileHelper";
 
 import type {StaticRouterModService} from "@spt-aki/services/mod/staticRouter/StaticRouterModService";
+import { IPmcData } from "@spt-aki/models/eft/common/IPmcData";
 
 class Mod implements IPostDBLoadMod,IPreAkiLoadMod
 {
@@ -18,7 +19,7 @@ class Mod implements IPostDBLoadMod,IPreAkiLoadMod
 
     private modConfig = require("../config/config.json");
     private databaseServer: DatabaseServer;
-    private saveServer: SaveServer;
+    private profileHelper: ProfileHelper;
     private tables : IDatabaseTables;
 
     private locations : ILocations;
@@ -27,7 +28,7 @@ class Mod implements IPostDBLoadMod,IPreAkiLoadMod
 
         // get database from server
         this.databaseServer = container.resolve<DatabaseServer>("DatabaseServer");
-        this.saveServer = container.resolve<SaveServer>("SaveServer");
+        this.profileHelper = container.resolve<ProfileHelper>("ProfileHelper");
         
         this.tables = this.databaseServer.getTables();
         this.locations = this.tables.locations;
@@ -47,7 +48,7 @@ class Mod implements IPostDBLoadMod,IPreAkiLoadMod
                     url: "/client/match/offline/end",
                     action: (url, info, sessionId, output) => 
                     {
-                        const profile : IAkiProfile = this.saveServer.getProfile(sessionId);
+                        const profile : IPmcData = this.profileHelper.getPmcProfile(sessionId);
 
                         if(this.modConfig.enabled){
                             this.setBossesSpawnChance(profile);
@@ -59,7 +60,7 @@ class Mod implements IPostDBLoadMod,IPreAkiLoadMod
                     url: "/client/game/start",
                     action: (url, info, sessionId, output) => 
                     {
-                        const profile : IAkiProfile = this.saveServer.getProfile(sessionId);
+                        const profile : IPmcData = this.profileHelper.getPmcProfile(sessionId);
 
                         if(this.modConfig.enabled){
                             this.setBossesSpawnChance(profile);
@@ -67,7 +68,6 @@ class Mod implements IPostDBLoadMod,IPreAkiLoadMod
 
                         return output;
                     }
-
                 }
             ],
             "aki"
@@ -76,10 +76,9 @@ class Mod implements IPostDBLoadMod,IPreAkiLoadMod
 
     }
 
-    private setBossesSpawnChance(profile: IAkiProfile){
+    private setBossesSpawnChance(profile: IPmcData){
 
-        const playerLevel = profile.characters.pmc.Info.Level;
-
+        const playerLevel = profile.Info != undefined ? profile.Info.Level : 1;
 
        // const levelPercentage = Math.min(Math.ceil((playerLevel/this.modConfig.levelThreshold) * 100),100);
 
